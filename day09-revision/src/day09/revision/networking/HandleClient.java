@@ -8,7 +8,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.net.Socket;
 
-public class HandleClient {
+public class HandleClient implements Runnable {
 
    private final Socket socket;
    private final LogSession logger;
@@ -16,6 +16,16 @@ public class HandleClient {
    public HandleClient(Socket socket, LogSession logger) { 
       this.socket = socket; 
       this.logger = logger;
+   }
+
+   @Override
+   public void run() {
+      System.out.printf(">>> running on thread: %s\n", Thread.currentThread().getName());
+      try {
+         process();
+      } catch (Exception ex) {
+         ex.printStackTrace();
+      }
    }
 
    public void process() throws Exception {
