@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+	<form method="POST" action="/todo" data-th-object="${todo}">
+
+		<table>
+			<tr>
+				<td>Task: </td>
+				<td>
+					<input type="text" size="30" data-th-field="*{task}">
+					<span 
+						data-th-if="${#fields.hasErrors('task')}"
+						data-th-errors="*{task}" data-th-errorclass="error">
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td>Priority: </td>
+				<td>
+					<select data-th-field="*{priority}">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Due Date:</td>
+				<td>
+					<input type="date" data-th-field="*{dueDate}">
+					<span 
+						data-th-if="${#fields.hasErrors('dueDate')}"
+						data-th-errors="*{dueDate}" data-th-errorclass="error">
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="submit">Add</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+
+	<div data-th-if="${#lists.isEmpty(todos)}">
+		<h3>You have no task</h3>
+	</div>
+
+	<div data-th-unless="${#lists.isEmpty(todos)}">
+		<table>
+			<thead>
+				<tr>
+					<th>Task</th>
+					<th>Priority</th>
+					<th>Due Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="t: ${todos}">
+					<td> <span data-th-text="${t.task}"></span> </td>
+					<td> <span data-th-text="${t.priority}"></span> </td>
+					<td> <span data-th-text="${t.dueDate}"></span> </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>
