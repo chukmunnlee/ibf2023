@@ -34,14 +34,17 @@ public class MessageProcessor {
 			final ListOperations<String, String> listOps = template.opsForList();
 			while (true) {
 				try {
+					System.out.println("\n*** POLLING ***");
 					Optional<String> opt = Optional.ofNullable(
 						listOps.rightPop("myqueue", Duration.ofSeconds(30)));
 					if (opt.isPresent()) {
+						System.out.printf("*** NEW MESSAGE: %s\n", opt.get());
 						JsonReader reader = Json.createReader(new StringReader(opt.get()));
 						JsonObject data = reader.readObject();
 						MessageObject msgObj = MessageObject.toMessageObject(data);
 						MessageObject result = new MessageObject(msgObj.id(), 
 							"[%s]:%s".formatted((new Date()).toString(), msgObj.message().toUpperCase()));
+						System.out.printf("**** PUBLISHING: %s\n", result.toString());
 						template.convertAndSend("mytopic", result.toJson().toString());
 					}
 				} catch (Exception ex) {
