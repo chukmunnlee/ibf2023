@@ -13,7 +13,7 @@ import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import ibf2023.paf.day25.services.MessageProcessor;
+import ibf2023.paf.day25.services.MessageSubscriber;
 
 @Configuration
 public class AppConfig {
@@ -33,8 +33,8 @@ public class AppConfig {
 	@Value("${spring.redis.password}")
 	private String redisPassword;
 
-	//@Autowired
-	//private MessageProcessor processor;
+	@Autowired
+	private MessageSubscriber subscriber;
 
 	public RedisConnectionFactory createConnectionFactory() {
 		final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(redisHost, redisPort);
@@ -54,7 +54,7 @@ public class AppConfig {
 	@Bean("myredis")
 	public RedisTemplate<String, String> createRedisTemplate() {
 		RedisConnectionFactory fac = createConnectionFactory();
-		final RedisTemplate<String, String> template = new RedisTemplate<>();
+		RedisTemplate<String, String> template = new RedisTemplate<>();
 		template.setConnectionFactory(fac);
 		template.setKeySerializer(new StringRedisSerializer());
 		template.setValueSerializer(new StringRedisSerializer());
@@ -63,13 +63,13 @@ public class AppConfig {
 		return template;
 	}
 
-	/*
 	@Bean
-	public RedisMessageListenerContainer createContainer(RedisConnectionFactory fac) {
+	public RedisMessageListenerContainer createMessageListener() {
+		RedisConnectionFactory fac = createConnectionFactory();
 		RedisMessageListenerContainer container = new RedisMessageListenerContainer();
 		container.setConnectionFactory(fac);
-		container.addMessageListener(null, ChannelTopic.of("mytopic"));
+
+		container.addMessageListener(subscriber, ChannelTopic.of("mytopic"));
 		return container;
 	}
-	*/
 }
