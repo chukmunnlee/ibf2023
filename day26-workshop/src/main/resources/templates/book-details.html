@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+
+		<h2>Book Id: <code data-th-text="${book.id}"></code></h2>
+
+		<table>
+			<tr>
+				<td>Title:</td>
+				<td> <span data-th-text="${book.title}"></span> </td>
+			</tr>
+			<tr>
+				<td>Authors:</td>
+				<td> <span data-th-text="${book.authors}"></span> </td>
+			</tr>
+			<tr>
+				<td>Average Rating:</td>
+				<td> <span data-th-text="${book.averageRating}"></span> </td>
+			</tr>
+			<tr>
+				<td>Language:</td>
+				<td> <span data-th-text="${book.language}"></span> </td>
+			</tr>
+			<tr>
+				<td>Pages:</td>
+				<td> <span data-th-text="${book.pages}"></span> </td>
+			</tr>
+		</table>
+
+		<a href="/"> <h3>Back</h3> </a>
+		
+	</body>
+</html>
