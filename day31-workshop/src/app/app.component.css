@@ -1,0 +1,8 @@
+
+.side-by-side {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-auto-flow: column;
+}
+

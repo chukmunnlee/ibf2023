@@ -1,0 +1,11 @@
+<h2>Inventory</h2>
+
+@for (i of inventories; let idx = $index; track idx) {
+  <div (click)="selected(idx)">
+    <img [src]="i.url" width="64">
+    <span>{{ i.name | uppercase }}</span>
+  </div>
+}
+@empty {
+  <h2>You have no inventories to sell</h2>
+}

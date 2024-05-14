@@ -1,0 +1,11 @@
+<h1>Yet Another Shopping Cart</h1>
+<div class="side-by-side">
+  <div>
+    <app-inventory [inventories]="myInventories" (onSelection)="inventorySelected($event)">
+    </app-inventory>
+  </div>
+
+  <div>
+    <app-cart [contents]="selections"></app-cart>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+
+<h2>Cart</h2>
+
+@if (contents.length > 0) {
+  <ol>
+    @for (i of contents; track $index) {
+      <li>{{ i | titlecase }}</li>
+    }
+  </ol>
+} @else {
+  <h2>Your cart is empty</h2>
+}
