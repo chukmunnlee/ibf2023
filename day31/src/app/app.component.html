@@ -1,0 +1,31 @@
+<h1>My Application</h1>
+
+<h2>With *ngFor - structural directive </h2>
+<app-my-image *ngFor="let i of imgs; let idx = index" [imageUrl]="i" [caption]="'Image number ' + idx">
+</app-my-image>
+
+<h3 *ngIf="(imgs.length % 2) == 0">You have Even number of pictures</h3>
+<h3 *ngIf="(imgs.length % 2) != 0">You have Odd number of pictures</h3>
+
+<h2>With at_for - directive </h2>
+<h2>New flow control after V15</h2>
+@for (i of imgs; track idx; let idx = $index) {
+  <app-my-image [imageUrl]="i" [caption]="'Image number ' + idx"></app-my-image>
+}
+
+@if((imgs.length % 2) == 0) {
+  <h3>You have EVEN number of pictures</h3>
+} @else {
+  <h3>You have ODD number of pictures</h3>
+}
+
+<!--
+<app-my-image (onFigureClicked)="handleClick($event)"></app-my-image>
+<app-my-image
+  imageUrl="https://media-cldnry.s-nbcnews.com/image/upload/streams/2014/February/140225/2D11741327-105187-lisa-granshawAAEA3BA7-DBD0-2809-3D75-A303123C3B8F.jpg"
+  caption="A cute polar bear!"
+  (onFigureClicked)="handleClick($event)"
+>
+</app-my-image>
+<app-my-image [imageUrl]="polarBear" [caption]="title"></app-my-image>
+-->
