@@ -1,0 +1,5 @@
+<h3>Form status {{ formStatus }}</h3>
+<form [formGroup]="form" (submit)="process()">
+  Name: <input type="text" formControlName="name">
+  <button type="submit">Process</button>
+</form>
