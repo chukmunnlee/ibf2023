@@ -1,0 +1,8 @@
+
+<form [formGroup]="form" (submit)="getWeather()">
+  <label for="city">City: </label>
+
+  <input type="text" id="city" formControlName="city">
+
+  <button type="submit" [disabled]="form.invalid">Get Weather</button>
+</form>
