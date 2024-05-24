@@ -1,0 +1,6 @@
+.game {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+}
