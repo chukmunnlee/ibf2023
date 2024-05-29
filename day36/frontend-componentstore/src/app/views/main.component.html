@@ -5,3 +5,7 @@
     <button type="button" [routerLink]="['/task']">Add Project</button>
   </div>
 </div>
+
+<h3 *ngFor="let info of projectInfo$ | async">
+  {{ info.projectName | uppercase }} ({{ info.taskCount }})
+</h3>

@@ -7,3 +7,19 @@ export type Project = {
   projectName: string
   tasks: Task[]
 }
+
+export type ProjectInfo = {
+  id: string
+  projectName: string
+  taskCount: number
+}
+
+// projects: Dexie.Table<Project, string>
+//
+// this.version(1).store({
+//  projects: 'id'
+// })
+
+export interface ProjectDatabase {
+  projects: Project[]
+}

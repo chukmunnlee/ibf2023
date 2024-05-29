@@ -6,6 +6,7 @@ import { MainComponent } from './views/main.component';
 import { TaskComponent } from './views/task.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ProjectStore } from './project.store';
 
 const appRoutes: Routes = [
   { path: '', component: MainComponent },
@@ -22,7 +23,7 @@ const appRoutes: Routes = [
     BrowserModule, ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [ ProjectStore ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
