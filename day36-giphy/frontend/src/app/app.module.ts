@@ -24,7 +24,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule, HttpClientModule, ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    // Use hash
+    RouterModule.forRoot(appRoutes, { useHash: true })
   ],
   providers: [ GiphyService, GiphyStore ],
   bootstrap: [AppComponent]
