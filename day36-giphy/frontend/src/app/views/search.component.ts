@@ -26,10 +26,12 @@ export class SearchComponent implements OnInit {
 
   save() {
     this.result$
-      .then(result => {
-        this.giphyStore.saveResult(result)
-        this.router.navigate([ '/' ])
-      })
+      .then(
+        result => {
+          this.giphyStore.saveResult(result)
+          this.router.navigate([ '/' ])
+        }
+      )
   }
 
 }

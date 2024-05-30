@@ -28,4 +28,24 @@ export class GiphyStore extends ComponentStore<SearchResultSlice> {
     }
   )
 
+  readonly getSavedSearchesByQ = (qText: string) =>
+    this.select<SearchResult | undefined>(
+      (currStore: SearchResultSlice) =>
+        currStore.results.find(s => s.q == qText)
+    )
+
+  readonly f = (x: number) =>
+    (n: number) => {
+      console.info(`n: ${n}, x: ${x}`)
+    }
+
+  readonly getFullSavedSearches = this.select<SearchResult[]>(
+    (currStore: SearchResultSlice) => currStore.results
+  )
+
+  readonly getCachedResultCount = this.select<number>(
+    // SQL
+    (currStore: SearchResultSlice) => currStore.results.length
+  )
+
 }
